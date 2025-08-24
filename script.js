@@ -1,9 +1,7 @@
-//your code here!
+const listContainer = document.getElementById('infi-list');
+let itemCount = listContainer.children.length; // already 10 items in HTML
 
-const listContainer = document.getElementById('list'); // or your list's ID
-let itemCount = 0;
-
-// Function to create list items
+// Function to add items
 function addItems(count) {
   for (let i = 0; i < count; i++) {
     const li = document.createElement('li');
@@ -12,17 +10,9 @@ function addItems(count) {
   }
 }
 
-// Initial load: add 10 items
-addItems(10);
-
-// Detect scroll to bottom
-window.addEventListener('scroll', () => {
-  const scrollTop = document.documentElement.scrollTop;
-  const scrollHeight = document.documentElement.scrollHeight;
-  const clientHeight = document.documentElement.clientHeight;
-
-  // Check if we're at the bottom
-  if (scrollTop + clientHeight >= scrollHeight - 5) {
-    addItems(2); // Add 2 new items
+// Detect scroll on the list container
+listContainer.addEventListener('scroll', () => {
+  if (listContainer.scrollTop + listContainer.clientHeight >= listContainer.scrollHeight) {
+    addItems(2); // Add 2 items when scrolled to bottom
   }
 });
